@@ -2,7 +2,7 @@
   description = "hyeondobin's Nix OS configuration";
 
   outputs =
-    { self, ... }@inputs:
+    { self, wsl,... }@inputs:
     let
       inherit (self) outputs;
       systems = [ "x86_64-linux" ];
@@ -10,8 +10,9 @@
       username = "hyeondobin";
       configuration = config-vars: {
         nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
+	
           specialArgs = {
-            inherit inputs outputs config-vars;
+            inherit self inputs outputs config-vars;
           };
           modules = [
             inputs.catppuccin.nixosModules.catppuccin
@@ -41,18 +42,20 @@
         hostname = "Panruyal";
         inherit username;
         userDesc = "Laptop";
+	system = "x86_64-linux";
       };
       Winix = configuration {
-        stateVersion = "25.11";
+        stateVersion = "25.05";
         hostname = "Winix";
         inherit username;
         userDesc = "WSL from VanLioum";
+	system = "x86_64-linux";
       };
     in
     {
-      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
-      formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt);
-      overlays = import ./overlays { inherit inputs; };
+      # packages = forAllSystems (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+      # formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt);
+      # overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
         Panruyal = Panruyal.nixosConfiguration;
@@ -79,6 +82,10 @@
 
     nxim = {
       url = "github:hyeondobin/nxim";
+    };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
