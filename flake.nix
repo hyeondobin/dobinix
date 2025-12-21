@@ -2,31 +2,68 @@
   description = "hyeondobin's Nix OS configuration";
 
   outputs =
-    {
-      hive,
-      std,
-      ...
-    }@inputs:
-    hive.growOn
-      {
-        inherit inputs;
-
-        nixpkgsConfig.allowUnfree = true;
-
-        cellsFrom = ./cells;
-        cellBlocks =
-          with std.blockTypes;
-          with hive.blockTypes;
-          [
-            (functions "bees")
-            nixosConfigurations
-            homeConfigurations
+    { self, ... }@inputs:
+    let
+      inherit (self) outputs;
+      systems = [ "x86_64-linux" ];
+      forAllSystems = inputs.nixpkgs.lib.getAttrs systems;
+      username = "hyeondobin";
+      configuration = config-vars: {
+        nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs config-vars;
+          };
+          modules = [
+            inputs.catppuccin.nixosModules.catppuccin
+            ./hosts/${config-vars.hostname}
           ];
-      }
-      {
+        };
+        homeConfiguration =
+          system:
+          inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
+            extraSpecialArgs = {
+              inherit
+                self
+                inputs
+                outputs
+                config-vars
+                ;
+            };
+            modules = [
+              inputs.catppuccin.homeManagerModules.catppuccin
+              ./home/${config-vars.hostname}
+            ];
+          };
       };
+      Panruyal = configuration {
+        stateVersion = "25.11";
+        hostname = "Panruyal";
+        inherit username;
+        userDesc = "Laptop";
+      };
+      Winix = configuration {
+        stateVersion = "25.11";
+        hostname = "Winix";
+        inherit username;
+        userDesc = "WSL from VanLioum";
+      };
+    in
+    {
+      packages = forAllSystems (system: import ./pkgs inputs.nixpkgs.legacyPackages.${system});
+      formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt);
+      overlays = import ./overlays { inherit inputs; };
 
-  # Hive inputs
+      nixosConfigurations = {
+        Panruyal = Panruyal.nixosConfiguration;
+        Winix = Winix.nixosConfiguration;
+      };
+      homeConfigurations = {
+        "hyeondobin@Panruyal" = Panruyal.homeConfiguration "x86_64-linux";
+        "hyeondobin@Winix" = Winix.homeConfiguration "x86_64-linux";
+      };
+    };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -40,24 +77,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    std = {
-      url = "github:divnix/std";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hive = {
-      url = "github:divnix/hive";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    haumea = {
-      url = "github:divnix/haumea";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  # my inputs
-  inputs = {
     nxim = {
       url = "github:hyeondobin/nxim";
     };
