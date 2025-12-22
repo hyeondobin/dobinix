@@ -2,17 +2,24 @@
   description = "hyeondobin's Nix OS configuration";
 
   outputs =
-    { self, wsl,... }@inputs:
+    { self, ... }@inputs:
     let
       inherit (self) outputs;
+      system = "x86_64-linux";
       systems = [ "x86_64-linux" ];
       forAllSystems = inputs.nixpkgs.lib.getAttrs systems;
       username = "hyeondobin";
       configuration = config-vars: {
         nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
-	
+
           specialArgs = {
-            inherit self inputs outputs config-vars;
+            inherit
+              self
+              inputs
+              outputs
+              config-vars
+              username
+              ;
           };
           modules = [
             inputs.catppuccin.nixosModules.catppuccin
@@ -29,27 +36,26 @@
                 inputs
                 outputs
                 config-vars
+                username
                 ;
             };
             modules = [
-              inputs.catppuccin.homeManagerModules.catppuccin
+              inputs.catppuccin.homeModules.catppuccin
               ./home/${config-vars.hostname}
             ];
           };
       };
       Panruyal = configuration {
-        stateVersion = "25.11";
+        stateVersion = "25.05";
         hostname = "Panruyal";
-        inherit username;
+        inherit username system;
         userDesc = "Laptop";
-	system = "x86_64-linux";
       };
       Winix = configuration {
         stateVersion = "25.05";
         hostname = "Winix";
-        inherit username;
+        inherit username system;
         userDesc = "WSL from VanLioum";
-	system = "x86_64-linux";
       };
     in
     {
@@ -86,6 +92,10 @@
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
     };
   };
 }

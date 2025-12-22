@@ -16,7 +16,6 @@
     "nix-command"
     "flakes"
   ];
-  networking.hostName = config-vars.hostname;
 
   environment.systemPackages = [
     inputs.nxim.packages.${config-vars.system}.nxim
@@ -26,5 +25,6 @@
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
+  networking.hostName = config-vars.hostname;
   system.stateVersion = config-vars.stateVersion;
 }
