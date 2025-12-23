@@ -1,11 +1,14 @@
 { inputs, pkgs, ... }:
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  hyprpkgs = inputs.hyprland.packages."${system}";
+in
 {
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = hyprpkgs.hyprland;
+    portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
   };
 }

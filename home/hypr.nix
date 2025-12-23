@@ -1,13 +1,16 @@
 { inputs, pkgs, ... }:
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  hyprpkgs = inputs.hyprland.packages."${system}";
+in
 {
   home.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = hyprpkgs.hyprland;
+    portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
 
     settings = {
       ########################
@@ -188,25 +191,17 @@
         "pseudo on, match:class fcitx"
         "suppress_event maximize, match:class .*"
         "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
-        # "pseudo, class:fcitx"
-        # "suppressevent maximize, class:.*"
-        # "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
-      ];
-      windowrulev2 = [
-        "no_focus on, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        # "nofocus, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "suppressevent maximize, class:.*"
-        "workspace name:Emacs, class:^(emacs).*$"
-        "workspace name:Term, class:^(kitty)$"
-        "workspace name:Term, class:^.*(wezterm)$"
-        "workspace name:Term, initialTitle:^([Gg]hostty)"
-        "workspace name:Notion, class:^([Nn]otion)"
-        "workspace name:WWW, class:^([Vv]ivaldi).*$"
-        "workspace name:Vimb, class:^(vimb).*$"
-        "workspace special:Bitwarden, class:^([Bb]itwarden)"
-        "workspace special:Discord, class:^([Dd]iscord)"
-        "workspace special:Music, class:^([Gg]oogle-chrome)"
-        "workspace special:Sns, class:^.*(telegram).*$"
+        "workspace name:Emacs, match:class ^(emacs).*$"
+        "workspace name:Term, match:class ^(kitty)$"
+        "workspace name:Term, match:class ^.*(wezterm)$"
+        "workspace name:Term, match:initial_title ^([Gg]hostty)"
+        "workspace name:Notion, match:class ^([Nn]otion)"
+        "workspace name:WWW, match:class ^([Vv]ivaldi).*$"
+        "workspace name:Vimb, match:class ^(vimb).*$"
+        "workspace special:Bitwarden, match:class ^([Bb]itwarden)"
+        "workspace special:Discord, match:class ^([Dd]iscord)"
+        "workspace special:Music, match:class ^([Gg]oogle-chrome)"
+        "workspace special:Sns, match:class ^.*(telegram).*$"
       ];
 
       ################

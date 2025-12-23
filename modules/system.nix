@@ -144,6 +144,12 @@
     enable = true;
   };
 
+  # font
+  fonts.packages = [
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.d2coding
+  ];
+
   environment = {
     variables = {
       EDITOR = "nvim";
@@ -154,6 +160,7 @@
       inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
       wget
       curl
+      wl-clipboard
       kitty
       ghostty
       bat
