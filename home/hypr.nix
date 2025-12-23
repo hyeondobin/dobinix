@@ -185,16 +185,16 @@
       ### WINDOWRULE ###
       ##################
       windowrule = [
-        # "pseudo on, match:class fcitx"
-        # "suppress_event maximize, match:class .*"
-        # "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:floating 1, match:fullscreen 0, match:pinned 0"
-        "pseudo, class:fcitx"
-        "suppressevent maximize, class:.*"
-        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
+        "pseudo on, match:class fcitx"
+        "suppress_event maximize, match:class .*"
+        "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+        # "pseudo, class:fcitx"
+        # "suppressevent maximize, class:.*"
+        # "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
       ];
       windowrulev2 = [
-        # "no_focus on, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "nofocus, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "no_focus on, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        # "nofocus, class:^$, title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         "suppressevent maximize, class:.*"
         "workspace name:Emacs, class:^(emacs).*$"
         "workspace name:Term, class:^(kitty)$"
