@@ -7,6 +7,7 @@
       # need a ' ' at the end of abbrs as we use space as expand-abbr os self-insert
       cat = "bat ";
       cp = "cp -iv";
+      en = "nvim ~/.config/nxim/init.lua";
       ex = "nvim ~/repo/dobinix/flake.nix";
       l = "eza ";
       lz = "lazygit ";
