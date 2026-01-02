@@ -157,7 +157,7 @@
     };
     systemPackages = with pkgs; [
       inputs.nxim.packages.${stdenv.hostPlatform.system}.nxim
-      inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
+      # inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
       wget
       curl
       wl-clipboard
