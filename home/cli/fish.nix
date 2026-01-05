@@ -6,18 +6,19 @@
     shellAbbrs = {
       # need a ' ' at the end of abbrs as we use space as expand-abbr os self-insert
       cat = "bat ";
-      cp = "cp -iv";
-      en = "nvim ~/.config/nxim/flake.nix";
-      ex = "nvim ~/repo/dobinix/flake.nix";
+      cp = "cp -iv ";
+      en = "nvim ~/.config/nxim/flake.nix ";
+      ex = "nvim ~/repo/dobinix/flake.nix ";
       l = "eza ";
       lt = "eza --tree";
       lz = "lazygit ";
       mkdir = "mkdir -pv ";
       mv = "mv -iv ";
-      nhs = "nh home switch --ask ";
-      nhsf = "nh home switch ";
+      nhs = "nh home switch --ask -b hm-backup ";
+      nhsf = "nh home switch -b hm-backup ";
       nos = "nh os switch --ask ";
       nosf = "nh os switch ";
+      sofi = "source ~/.config/fish/config.fish";
       vi = "nvim ";
     };
     interactiveShellInit = ''
@@ -30,7 +31,8 @@
     '';
   };
   home.packages = with pkgs; [
-    fastfetch
     eza
+    fastfetch
+    zoxide
   ];
 }
