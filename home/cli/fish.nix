@@ -7,16 +7,17 @@
       # need a ' ' at the end of abbrs as we use space as expand-abbr os self-insert
       cat = "bat ";
       cp = "cp -iv";
-      en = "nvim ~/.config/nxim/init.lua";
+      en = "nvim ~/.config/nxim/flake.nix";
       ex = "nvim ~/repo/dobinix/flake.nix";
       l = "eza ";
+      lt = "eza --tree";
       lz = "lazygit ";
       mkdir = "mkdir -pv ";
       mv = "mv -iv ";
-      nos = "nh os switch --ask ";
-      nosf = "nh os switch ";
       nhs = "nh home switch --ask ";
       nhsf = "nh home switch ";
+      nos = "nh os switch --ask ";
+      nosf = "nh os switch ";
       vi = "nvim ";
     };
     interactiveShellInit = ''

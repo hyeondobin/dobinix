@@ -250,7 +250,7 @@ in
         # the default example binds
         "$mainMod, C, killactive"
         "$mainMod, P, pseudo"
-        "$mainMod, J, togglesplit"
+        "$mainMod, S, togglesplit"
         "$mainMod, SPACE, exec, $menu"
 
         # Moving around windows
@@ -259,10 +259,10 @@ in
         "$mainMod, down, movefocus, d"
         "$mainMod, up, movefocus, u"
         # also with vim bindings
-        "$mainMod, h, movefocus, l"
-        "$mainMod, j, movefocus, d"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, l, movefocus, r"
+        "$mainMod, H, movefocus, l"
+        "$mainMod, J, movefocus, d"
+        "$mainMod, K, movefocus, u"
+        "$mainMod, L, movefocus, r"
 
         # audio control, refer to submaps below
         "$ctrlMod SHIFT, A, submap, audio"
