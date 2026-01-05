@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ../../modules/system.nix
     ../../modules/hyprland.nix
+    ../../modules/bluetooth.nix
   ];
 
   # boot related configs
