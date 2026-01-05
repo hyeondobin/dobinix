@@ -8,6 +8,7 @@
     ../../modules/system.nix
     ../../modules/hyprland.nix
     ../../modules/bluetooth.nix
+    ../../modules/vimb.nix
   ];
 
   # boot related configs

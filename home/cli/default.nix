@@ -1,8 +1,9 @@
 { ... }:
 {
   imports = [
-    ./fish.nix
     ./eza.nix
+    ./fish.nix
+    ./ghostty.nix
     ./zoxide.nix
   ];
 
