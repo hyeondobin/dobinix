@@ -115,6 +115,7 @@ in
       "$webBrowser" = "vivaldi --disable-gpu";
       "$bitwarden" = "bitwarden";
       "$chrome" = "googel-chrome-stable --disable-gpu";
+      "$menu" = "rofi -show drun";
 
       ################
       ### ENV VARS ###
@@ -142,6 +143,7 @@ in
         border_size = 3;
         "col.active_border" = "$lavender $peach 30deg";
         "col.inactive_border" = "$crust";
+        layout = "master";
       };
       decoration = {
         shadow = {
@@ -302,5 +304,4 @@ in
       };
     };
   };
-  programs.wofi.enable = true;
 }

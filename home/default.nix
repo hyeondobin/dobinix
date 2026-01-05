@@ -14,6 +14,7 @@
       hyprcursor.enable = true;
       size = 24;
     };
+
   };
 
   xdg.configFile."uwsm/env".source =
@@ -21,16 +22,13 @@
 
   programs.home-manager.enable = true;
 
-  # programs.git = {
-  #   enable = true;
-  #   settings = {
-  #     user.name = "hyeondobin";
-  #     user.email = "dobinhyeon@gmail.com";
-  #     init = {
-  #       defaultBranch = "main";
-  #     };
-  #   };
-  # };
+  imports = [
+    ./rofi.nix
+  ];
+
+  dbConfig = {
+    rofi = true;
+  };
 
   catppuccin = {
     enable = true;
