@@ -109,6 +109,14 @@
           };
           "Hotkey/TriggerKeys"."0" = "Alt+Alt_R";
           "Hotkey/TriggerKeys"."1" = "Hangul";
+          "Hotkey/DeactivateKeys"."0" = "Escape";
+          Behavior = {
+            ShareInputState = false;
+            PreeditEnabledByDefault = false;
+            ShowInputMethodInformation = true;
+            showInputMethodInformationWhenFocusIn = true;
+            CompactInputMethodInformation = true;
+          };
         };
       };
     };
@@ -165,16 +173,21 @@
     systemPackages = with pkgs; [
       inputs.nxim.packages.${stdenv.hostPlatform.system}.nxim
       # inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
+      bat
+      btop
       wget
       curl
+
       wl-clipboard
       kitty
       ghostty
-      bat
+
       zoxide
       lazygit
+
       vivaldi
       bitwarden-desktop
+
       (catppuccin-sddm.override {
         flavor = "macchiato";
         fontSize = "12";
