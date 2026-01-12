@@ -20,6 +20,7 @@
       "flakes"
     ];
     substituters = [
+      # instead of building locally, download cached binary
       "https://cache.nixos.org"
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
@@ -34,6 +35,7 @@
     ];
     builders-use-substitutes = true;
   };
+  nix.registry.nxim.flake = inputs.nxim;
   # nix.gc = {
   #   automatic = lib.mkDefault true;
   #   dates = lib.mkDefault "weekly";
@@ -119,6 +121,7 @@
       init = {
         defaultBranch = "main";
       };
+      core.longpaths = true;
     };
   };
 

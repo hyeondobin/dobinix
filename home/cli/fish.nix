@@ -18,6 +18,7 @@
       nhsf = "nh home switch -b hm-backup ";
       nos = "nh os switch --ask ";
       nosf = "nh os switch ";
+      noux = "nh os switch --update-input nxim";
       sofi = "source ~/.config/fish/config.fish";
       vi = "nvim ";
     };
