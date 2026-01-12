@@ -29,7 +29,11 @@
         homeConfiguration =
           system:
           inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${system};
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            # pkgs = inputs.nixpkgs.legacyPackages.${system};
             extraSpecialArgs = {
               inherit
                 self
@@ -96,6 +100,11 @@
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
+    };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

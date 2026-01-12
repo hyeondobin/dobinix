@@ -24,10 +24,12 @@
 
   imports = [
     ./rofi.nix
+    ./discord.nix
   ];
 
   dbConfig = {
     rofi = true;
+    discord = true;
   };
 
   catppuccin = {
