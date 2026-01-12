@@ -4,10 +4,9 @@ let
 in
 {
   config = lib.mkIf cfg.cli {
-    programs.zoxide = {
+    programs.fzf = {
       enable = true;
       enableFishIntegration = true;
-      options = [ "--cmd cd" ];
     };
   };
 }

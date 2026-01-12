@@ -1,15 +1,20 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  cfg = config.dbConfig;
+in
 {
-  programs.eza = {
-    enable = true;
-    colors = "always";
-    enableFishIntegration = true;
-    icons = "always";
-    git = true;
-    extraOptions = [
-      "--long"
-      "--all"
-      "--header"
-    ];
+  config = lib.mkIf cfg.cli {
+    programs.eza = {
+      enable = true;
+      colors = "always";
+      enableFishIntegration = true;
+      icons = "always";
+      git = true;
+      extraOptions = [
+        "--long"
+        "--all"
+        "--header"
+      ];
+    };
   };
 }

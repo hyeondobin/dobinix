@@ -236,13 +236,18 @@ in
 
         # discord
         "$mainMod, D, togglespecialworkspace, Discord"
-        "$ctrlMod, D, exec, discord --enable-wayland-ime --ozone-platform=wayland"
+        "$ctrlMod, D, exec, discord --enable-features=UseOzonePlatform --enable-wayland-ime --ozone-platform=wayland"
         "$shiftMod, D, movetoworkspace, special:Discord"
 
         # bitwarden
         "$mainMod, W, togglespecialworkspace, Bitwarden"
         "$ctrlMod, W, exec, $bitwarden"
         "$shiftMod, W, movetoworkspace, special:Bitwarden"
+
+        # telegram
+        "$mainMod, S, exec, pgrep Telegram && hyprctl dispatch togglespecialworkspace Sns || Telegram"
+        "$ctrlMod, S, exec, Telegram"
+        "$shiftMod, S, movetoworkspace, special:Sns"
 
         # screenshot
         ", PRINT, exec, hyprshot -m output"

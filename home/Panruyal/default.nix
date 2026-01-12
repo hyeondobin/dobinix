@@ -7,4 +7,8 @@
     ../cli
   ];
 
+  dbConfig = {
+    cli = true;
+  };
+
 }
