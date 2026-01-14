@@ -42,9 +42,6 @@
   #   options = lib.mkDefault "--delete-older-than 7d";
   # };
 
-  # allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # nix cli wrapper
   programs.nh = {
     enable = true;

@@ -5,13 +5,19 @@
     { self, ... }@inputs:
     let
       inherit (self) outputs;
+      pkgs = import inputs.nixpkgs {
+        inherit system overlays;
+        # allow unfree packages
+        config.allowUnfree = true;
+      };
+      overlays = [ inputs.rust-overlay.overlays.default ];
       system = "x86_64-linux";
       systems = [ "x86_64-linux" ];
       forAllSystems = inputs.nixpkgs.lib.getAttrs systems;
       username = "hyeondobin";
       configuration = config-vars: {
         nixosConfiguration = inputs.nixpkgs.lib.nixosSystem {
-
+          inherit pkgs;
           specialArgs = {
             inherit
               self
@@ -29,11 +35,7 @@
         homeConfiguration =
           system:
           inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            # pkgs = inputs.nixpkgs.legacyPackages.${system};
+            inherit pkgs;
             extraSpecialArgs = {
               inherit
                 self
@@ -105,6 +107,10 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
     };
   };
 }
