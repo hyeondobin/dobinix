@@ -202,20 +202,35 @@
       enable = true;
     };
   };
-  nxim = {
-    enable = true;
-    packageDefinitions.merge = {
-      nxim =
-        { pkgs, ... }:
-        {
-          extra = {
-            nixdExtras = {
-              nixpkgs = ''(builtins.getFlake "path:${toString inputs.self.outPath}").inputs.nixpkgs {}'';
-              nixos_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").nixosConfigurations.${config-vars.hostname}.options'';
-              home_manager_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").homeConfigurations."${username}@${config-vars.hostname}".options'';
+  nxim =
+    let
+      nixdExtras = {
+        nixpkgs = ''(builtins.getFlake "path:${toString inputs.self.outPath}").inputs.nixpkgs {}'';
+        nixos_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").nixosConfigurations.${config-vars.hostname}.options'';
+        home_manager_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").homeConfigurations."${username}@${config-vars.hostname}".options'';
+      };
+    in
+    {
+      enable = true;
+      packageNames = [
+        "nxim"
+        "regularCats"
+      ];
+      packageDefinitions.merge = {
+        nxim =
+          { ... }:
+          {
+            extra = {
+              inherit nixdExtras;
             };
           };
-        };
+        regularCats =
+          { ... }:
+          {
+            extra = {
+              inherit nixdExtras;
+            };
+          };
+      };
     };
-  };
 }
