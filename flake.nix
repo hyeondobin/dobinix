@@ -95,6 +95,7 @@
 
     nxim = {
       url = "github:hyeondobin/nxim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin = {
       url = "github:catppuccin/nix";
@@ -112,6 +113,7 @@
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
