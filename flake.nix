@@ -29,6 +29,7 @@
           };
           modules = [
             inputs.catppuccin.nixosModules.catppuccin
+            inputs.nxim.nixosModules.default
             ./hosts/${config-vars.hostname}
           ];
         };

@@ -2,6 +2,7 @@
   pkgs,
   username,
   inputs,
+  config-vars,
   ...
 }:
 {
@@ -168,8 +169,7 @@
       SSH_AUTH_SOCK = "/home/${username}/.bitwarden-ssh-agent.sock";
     };
     systemPackages = with pkgs; [
-      inputs.nxim.packages.${stdenv.hostPlatform.system}.nxim
-      # inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
+      # inputs.nxim.packages.${stdenv.hostPlatform.system}.nxim
       bat
       btop
       wget
@@ -202,5 +202,20 @@
       enable = true;
     };
   };
-
+  nxim = {
+    enable = true;
+    packageDefinitions.merge = {
+      nxim =
+        { pkgs, ... }:
+        {
+          extra = {
+            nixdExtras = {
+              nixpkgs = ''(builtins.getFlake "path:${toString inputs.self.outPath}").inputs.nixpkgs {}'';
+              nixos_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").nixosConfigurations.${config-vars.hostname}.options'';
+              home_manager_options = ''(builtins.getFlake "path:${toString inputs.self.outPath}").homeConfigurations."${username}@${config-vars.hostname}".options'';
+            };
+          };
+        };
+    };
+  };
 }

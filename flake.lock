@@ -711,11 +711,11 @@
         "plugins-treesitter-textobjects": "plugins-treesitter-textobjects"
       },
       "locked": {
-        "lastModified": 1768223934,
-        "narHash": "sha256-rocUJTgcoKhhaT91GfQsAHtQjnlmPn4jxf2oRnQxLro=",
+        "lastModified": 1768727643,
+        "narHash": "sha256-2n4pc5DdyHRMCQB1ZF7nzk2HCBRHe6bQbzWZaEUWHj0=",
         "owner": "hyeondobin",
         "repo": "nxim",
-        "rev": "c713bc8073582f375a930606ac3874000447b4d5",
+        "rev": "dd67082d07c33febc69d569a6f3043e492dd7d72",
         "type": "github"
       },
       "original": {
