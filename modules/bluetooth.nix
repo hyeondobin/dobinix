@@ -1,5 +1,13 @@
-{ ... }:
+{ config, lib, ... }:
+let
+  cfg = config.dbConfig;
+in
 {
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  options = {
+    dbConfig.bluetooth = lib.mkEnableOption "Enable bluetooth related options";
+  };
+  config = lib.mkIf cfg.bluetooth {
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
+  };
 }

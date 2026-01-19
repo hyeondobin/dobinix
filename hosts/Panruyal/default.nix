@@ -5,11 +5,14 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system.nix
-    ../../modules/hyprland.nix
-    ../../modules/bluetooth.nix
-    ../../modules/vimb.nix
+    ../../modules
   ];
+
+  dbConfig = {
+    hyprland = true;
+    tmux = true;
+    bluetooth = true;
+  };
 
   # boot related configs
   boot.loader = {
