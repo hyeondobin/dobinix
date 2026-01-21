@@ -13,6 +13,11 @@ in
       baseIndex = 1;
       keyMode = "vi";
       shortcut = "a";
+      newSession = true;
+      terminal = "tmux-256color";
+      extraConfig = "
+
+        ";
     };
   };
 }
