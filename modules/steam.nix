@@ -11,6 +11,7 @@ in
       enable = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
     };
   };
 

@@ -9,8 +9,9 @@
   ];
 
   dbConfig = {
-    hyprland = true;
     bluetooth = true;
+    hyprland = true;
+    steam = true;
   };
 
   # boot related configs
