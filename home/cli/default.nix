@@ -12,6 +12,7 @@ in
     ./fish.nix
     ./ghostty.nix
     ./zoxide.nix
+    ./tmux.nix
   ];
   config = lib.mkIf cfg.cli {
 

@@ -10,7 +10,6 @@
 
   dbConfig = {
     hyprland = true;
-    tmux = true;
     bluetooth = true;
   };
 
