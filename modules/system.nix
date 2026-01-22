@@ -128,6 +128,7 @@
         defaultBranch = "main";
       };
       core.longpaths = true;
+      pull.rebase = true;
     };
   };
 
