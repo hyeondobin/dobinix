@@ -30,6 +30,7 @@ in
         noux = "nh os switch --update-input nxim";
         sofi = "source ~/.config/fish/config.fish";
         vi = "nvim ";
+        z = "cd ";
       };
       interactiveShellInit = ''
         set fish_greeting "Mao Myao"
