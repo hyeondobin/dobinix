@@ -8,18 +8,23 @@
 {
   imports = [
     inputs.wsl.nixosModules.default
-    ./git.nix
+    # ./git.nix
+    ../../modules
   ];
+
+  dbConfig = {
+    qmk = true;
+  };
+
   wsl.enable = true;
   wsl.defaultUser = "hyeondobin";
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
   environment.systemPackages = [
-    inputs.nxim.packages.${config-vars.system}.nxim
-    # inputs.nxim.packages.${stdenv.hostPlatform.system}.regularCats
     pkgs.git
     pkgs.lazygit
   ];

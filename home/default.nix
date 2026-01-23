@@ -22,16 +22,13 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./rofi.nix
+    ./cli
     ./discord.nix
+    ./hypr.nix
+    ./rofi.nix
     ./telegram.nix
+    ./waybar
   ];
-
-  dbConfig = {
-    rofi = true;
-    discord = true;
-    telegram = true;
-  };
 
   catppuccin = {
     enable = true;

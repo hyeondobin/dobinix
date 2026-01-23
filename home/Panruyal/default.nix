@@ -1,14 +1,16 @@
-{ home-manager, ... }:
+# home-manager,
+{ ... }:
 {
   imports = [
     ../.
-    ../hypr.nix
-    ../waybar
-    ../cli
   ];
 
   dbConfig = {
+    discord = true;
+    rofi = true;
     cli = true;
+    hyprland = true;
+    waybar = true;
+    telegram = true;
   };
-
 }

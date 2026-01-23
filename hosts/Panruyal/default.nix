@@ -10,9 +10,14 @@
 
   dbConfig = {
     bluetooth = true;
+    display = true;
     hyprland = true;
-    steam = true;
+    ime = true;
+    internet = true;
     qmk = true;
+    sounds = true;
+    steam = true;
+    touch = true;
   };
 
   # boot related configs
