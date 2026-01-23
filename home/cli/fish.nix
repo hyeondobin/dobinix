@@ -28,6 +28,7 @@ in
         nos = "nh os switch --ask ";
         nosf = "nh os switch ";
         noux = "nh os switch --update-input nxim";
+        qfw = "qmk flash";
         sofi = "source ~/.config/fish/config.fish";
         vi = "nvim ";
         z = "cd ";
