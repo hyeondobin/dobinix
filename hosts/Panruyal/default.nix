@@ -12,6 +12,7 @@
     bluetooth = true;
     hyprland = true;
     steam = true;
+    qmk = true;
   };
 
   # boot related configs

@@ -6,5 +6,6 @@
     ./steam.nix
     ./system.nix
     ./vimb.nix
+    ./qmk.nix
   ];
 }
